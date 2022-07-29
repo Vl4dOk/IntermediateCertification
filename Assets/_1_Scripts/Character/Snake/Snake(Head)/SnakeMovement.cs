@@ -24,14 +24,13 @@ public class SnakeMovement : MonoBehaviour
         Vector3 Movement = new Vector3();
 
         Movement.z += _forwardSpeed;
-        if (Input.GetKey (KeyCode.D) && transform.position.x < _lateralLimit)
-        {
-            Movement.x += _sidewaysSpeed;
-        }
-        if (Input.GetKey(KeyCode.A) && transform.position.x > -_lateralLimit)
-        {
-            Movement.x -= _sidewaysSpeed;
-        }
+        if (Input.GetKey (KeyCode.D) && transform.position.x < _lateralLimit){   Movement.x += _sidewaysSpeed; }
+        if (Input.GetKey(KeyCode.A) && transform.position.x > -_lateralLimit){   Movement.x -= _sidewaysSpeed; }
         _rigidbody.transform.Translate(Movement);
+
+
+
+
+
     }
 }

@@ -19,7 +19,7 @@ public class TailMovement : MonoBehaviour
     private void Start()
     {
         _listPositions.Add(transform.position);
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 40; i++)
         {
             AddTail();
         }

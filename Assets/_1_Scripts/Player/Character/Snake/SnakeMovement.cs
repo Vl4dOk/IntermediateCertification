@@ -10,6 +10,7 @@ namespace Player.Character.Snake
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private float _forwardSpeed;
         [SerializeField] private float _sidewaysSpeed;
+        private float _smoothnessMovement;
         [SerializeField] private sbyte _lateralLimit;
         private ShowInfoForHealth _showInfoForHealth;
 
@@ -70,10 +71,48 @@ namespace Player.Character.Snake
             _listPositions[0] = transform.position;
             //Head moves
             Vector3 Movement = new Vector3(); Movement.z += _forwardSpeed;
-            if (Input.GetKey(KeyCode.D) && transform.position.x < _lateralLimit) { Movement.x += _sidewaysSpeed; }
+
+
+            //New System Movement for smoothness
+            
+            if (transform.position.x <= -_lateralLimit || transform.position.x >= _lateralLimit)
+            {  _smoothnessMovement = 0;}
+
+            if (Input.GetKey(KeyCode.D) && transform.position.x <= _lateralLimit)
+            {
+                if (_smoothnessMovement < 0)
+                { _smoothnessMovement += _sidewaysSpeed; }
+                _smoothnessMovement += _sidewaysSpeed;
+            }
+            if (Input.GetKey(KeyCode.A) && transform.position.x >= -_lateralLimit)
+            {
+                if (_smoothnessMovement > 0)
+                { _smoothnessMovement -= _sidewaysSpeed; }
+                _smoothnessMovement -= _sidewaysSpeed;
+            }
+           
+            if (_smoothnessMovement != 0 && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+            {
+                if (_smoothnessMovement > 0)
+                {
+                    _smoothnessMovement -= _sidewaysSpeed;
+                    if(_smoothnessMovement < 0) { _smoothnessMovement = 0; }
+                }
+                else if (_smoothnessMovement < 0)
+                {
+                    _smoothnessMovement += _sidewaysSpeed;
+                    if (_smoothnessMovement > 0) { _smoothnessMovement = 0; }
+                }
+            }
+            Movement.x += _smoothnessMovement;
+           
+
+
+            //Old system Movement
+         /* if (Input.GetKey(KeyCode.D) && transform.position.x < _lateralLimit) { Movement.x += _sidewaysSpeed; }
             if (Input.GetKey(KeyCode.A) && transform.position.x > -_lateralLimit) { Movement.x -= _sidewaysSpeed; }
-            //if (Input.GetKey(KeyCode.S) && transform.position.y < _lateralLimit) { Movement.y += _sidewaysSpeed; }
-            //if (Input.GetKey(KeyCode.W) && transform.position.y > -_lateralLimit) { Movement.y -= _sidewaysSpeed; }
+            if (Input.GetKey(KeyCode.S) && transform.position.y < _lateralLimit) { Movement.y += _sidewaysSpeed; }
+            if (Input.GetKey(KeyCode.W) && transform.position.y > -_lateralLimit) { Movement.y -= _sidewaysSpeed; }*/
             _rigidbody.transform.Translate(Movement);
         }
 

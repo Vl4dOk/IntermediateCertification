@@ -9,7 +9,8 @@ namespace Player.Character.Snake
         public short Health;
 
 
-
+        private List<Vector3> _listPositions = new List<Vector3>();
+        private List<GameObject> _listTail = new List<GameObject>();
 
 
         public void AddHealth()

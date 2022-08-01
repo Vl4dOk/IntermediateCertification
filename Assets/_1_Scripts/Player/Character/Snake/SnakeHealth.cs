@@ -16,8 +16,7 @@ namespace Player.Character.Snake
 
         private void Start()
         {
-            _showInfoForHealth = GetComponent<ShowInfoForHealth>();
-            
+            _showInfoForHealth = GetComponent<ShowInfoForHealth>();            
             _listPositions.Add(transform.position);            
              AddHealth((byte)(_startHealth));
             

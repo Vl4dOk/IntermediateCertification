@@ -7,7 +7,7 @@ namespace Player.Character.Snake
     public class SnakeMovement : MonoBehaviour
     {
         [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField] private float _forwardSpeed;
+                          public float _forwardSpeed;
         [SerializeField] private float _sidewaysSpeed;
                          private float _smoothnessMovementHorisontal;
                          private float _smoothnessMovementVertical;
@@ -40,8 +40,9 @@ namespace Player.Character.Snake
 
             //New System Movement for smoothness
             //Horizontal
-            if (transform.position.x <= -_lateralLimit || transform.position.x >= _lateralLimit)
-            {  _smoothnessMovementHorisontal = 0;}
+
+            if (transform.position.x <= -_lateralLimit || transform.position.x >= _lateralLimit)          
+            { _smoothnessMovementHorisontal = 0; }      
 
             if (Input.GetKey(KeyCode.D) && transform.position.x <= _lateralLimit)
             {
@@ -70,9 +71,12 @@ namespace Player.Character.Snake
             }
             Movement.x += _smoothnessMovementHorisontal;
 
+            
+            
             //Vertical
-            if (transform.position.y <= -_lateralLimit || transform.position.y >= _lateralLimit)
-            { _smoothnessMovementVertical = 0; }
+            /*
+            if (transform.position.y <= -_lateralLimit || transform.position.y >= _lateralLimit)           
+            { _smoothnessMovementVertical = 0; }  
 
             if (Input.GetKey(KeyCode.S) && transform.position.y <= _lateralLimit)
             {
@@ -100,9 +104,7 @@ namespace Player.Character.Snake
                 }
             }
             Movement.y += _smoothnessMovementVertical;
-
-
-
+            */
 
            
 

@@ -20,9 +20,9 @@ public class Barrier : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.TryGetComponent(out SnakeMovement tailMovement))
+        if(collision.gameObject.TryGetComponent(out SnakeHealth snakeHealth))
         {
-            tailMovement.RemoveTail();
+            snakeHealth.RemoveHealth();
             _health--;
             _showHealthInfo.ShowInfo(_health);
 
@@ -33,7 +33,7 @@ public class Barrier : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out SnakeMovement tailMovement))
+        if (collision.gameObject.TryGetComponent(out SnakeHealth snakeHealth))
         {
             _isContact += Time.deltaTime;
 
@@ -41,13 +41,12 @@ public class Barrier : MonoBehaviour
             {
                 _health--;
                 _showHealthInfo.ShowInfo(_health);
-                tailMovement.RemoveTail();
+                snakeHealth.RemoveHealth();
                 _isContact = 0;
             }
         }
         if (_health <= 0)
-        { Destroy(gameObject); 
-        
+        { Destroy(gameObject);         
         }
     }
 

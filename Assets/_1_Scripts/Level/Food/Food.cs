@@ -12,14 +12,11 @@ namespace Level.Food
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponent(out SnakeMovement snake))
+            if (other.gameObject.TryGetComponent(out SnakeHealth snake))
             {
-                for (int i = 0; i < NumberOfLivesRestored; i++)
-                { snake.AddTail(); }
+                snake.AddHealth(NumberOfLivesRestored);
                 Destroy(gameObject);
             }
-
-
         }
     }
 }

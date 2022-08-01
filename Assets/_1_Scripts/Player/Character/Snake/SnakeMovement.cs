@@ -6,64 +6,29 @@ namespace Player.Character.Snake
 {
     public class SnakeMovement : MonoBehaviour
     {
-        [SerializeField] private Transform _parentSnake;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private float _forwardSpeed;
         [SerializeField] private float _sidewaysSpeed;
-        private float _smoothnessMovement;
+                         private float _smoothnessMovementHorisontal;
+                         private float _smoothnessMovementVertical;
         [SerializeField] private sbyte _lateralLimit;
-        private ShowInfoForHealth _showInfoForHealth;
+       // private ShowInfoForHealth _showInfoForHealth;
 
-        private List<Vector3> _listPositions = new List<Vector3>();
-        private List<GameObject> _listTail = new List<GameObject>();
+        private List<Vector3> _listPositions;
+        private List<GameObject> _listTail;
 
         private void Start()
         {
-            
-            _listPositions.Add(transform.position);
-            for (int i = 0; i < 0; i++)
-            {
-                AddTail();
-            }
-
-            _showInfoForHealth = GetComponent<ShowInfoForHealth>();
-            ShowHealth();
+            _listPositions = GetComponent<SnakeHealth>()._listPositions;
+            _listTail = GetComponent<SnakeHealth>()._listTail;
         }
+        
 
         private void FixedUpdate()
         {
             MovementHead();
             MovementTail();
         }
-
-
-        public void AddTail()
-        {
-            GameObject tail = Instantiate(Resources.Load<GameObject>("Prefabs/Character/Snake/Snake(Tail)/SphereTail"),
-                new Vector3(_listPositions[_listTail.Count].x,
-                            _listPositions[_listTail.Count].y,
-                            _listPositions[_listTail.Count].z), Quaternion.Euler(0, 0, 0), _parentSnake);
-            _listTail.Add(tail);
-            _listPositions.Add(tail.transform.position);
-
-            ShowHealth();
-        }
-
-
-        public void RemoveTail()
-        {
-            if (_listTail.Count > 0)
-            {
-                Destroy(_listTail[_listTail.Count - 1]);
-                _listTail.RemoveAt(_listTail.Count - 1);
-                if (_listTail.Count > 0)
-                { _listPositions.RemoveAt(_listTail.Count - 1); }
-                ShowHealth();
-            }
-            else
-            { Destroy(gameObject); }
-        }
-
 
 
         private void MovementHead()
@@ -74,45 +39,79 @@ namespace Player.Character.Snake
 
 
             //New System Movement for smoothness
-            
+            //Horizontal
             if (transform.position.x <= -_lateralLimit || transform.position.x >= _lateralLimit)
-            {  _smoothnessMovement = 0;}
+            {  _smoothnessMovementHorisontal = 0;}
 
             if (Input.GetKey(KeyCode.D) && transform.position.x <= _lateralLimit)
             {
-                if (_smoothnessMovement < 0)
-                { _smoothnessMovement += _sidewaysSpeed; }
-                _smoothnessMovement += _sidewaysSpeed;
+                if (_smoothnessMovementHorisontal < 0)
+                { _smoothnessMovementHorisontal += _sidewaysSpeed; }
+                _smoothnessMovementHorisontal += _sidewaysSpeed;
             }
             if (Input.GetKey(KeyCode.A) && transform.position.x >= -_lateralLimit)
             {
-                if (_smoothnessMovement > 0)
-                { _smoothnessMovement -= _sidewaysSpeed; }
-                _smoothnessMovement -= _sidewaysSpeed;
-            }
-           
-            if (_smoothnessMovement != 0 && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+                if (_smoothnessMovementHorisontal > 0)
+                { _smoothnessMovementHorisontal -= _sidewaysSpeed; }
+                _smoothnessMovementHorisontal -= _sidewaysSpeed;
+            }           
+            if (_smoothnessMovementHorisontal != 0 && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
             {
-                if (_smoothnessMovement > 0)
+                if (_smoothnessMovementHorisontal > 0)
                 {
-                    _smoothnessMovement -= _sidewaysSpeed;
-                    if(_smoothnessMovement < 0) { _smoothnessMovement = 0; }
+                    _smoothnessMovementHorisontal -= _sidewaysSpeed;
+                    if(_smoothnessMovementHorisontal < 0) { _smoothnessMovementHorisontal = 0; }
                 }
-                else if (_smoothnessMovement < 0)
+                else if (_smoothnessMovementHorisontal < 0)
                 {
-                    _smoothnessMovement += _sidewaysSpeed;
-                    if (_smoothnessMovement > 0) { _smoothnessMovement = 0; }
+                    _smoothnessMovementHorisontal += _sidewaysSpeed;
+                    if (_smoothnessMovementHorisontal > 0) { _smoothnessMovementHorisontal = 0; }
                 }
             }
-            Movement.x += _smoothnessMovement;
+            Movement.x += _smoothnessMovementHorisontal;
+
+            //Vertical
+            if (transform.position.y <= -_lateralLimit || transform.position.y >= _lateralLimit)
+            { _smoothnessMovementVertical = 0; }
+
+            if (Input.GetKey(KeyCode.S) && transform.position.y <= _lateralLimit)
+            {
+                if (_smoothnessMovementVertical < 0)
+                { _smoothnessMovementVertical += _sidewaysSpeed; }
+                _smoothnessMovementVertical += _sidewaysSpeed;
+            }
+            if (Input.GetKey(KeyCode.W) && transform.position.y >= -_lateralLimit)
+            {
+                if (_smoothnessMovementVertical > 0)
+                { _smoothnessMovementVertical -= _sidewaysSpeed; }
+                _smoothnessMovementVertical -= _sidewaysSpeed;
+            }
+            if (_smoothnessMovementVertical != 0 && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+            {
+                if (_smoothnessMovementVertical > 0)
+                {
+                    _smoothnessMovementVertical -= _sidewaysSpeed;
+                    if (_smoothnessMovementVertical < 0) { _smoothnessMovementVertical = 0; }
+                }
+                else if (_smoothnessMovementVertical < 0)
+                {
+                    _smoothnessMovementVertical += _sidewaysSpeed;
+                    if (_smoothnessMovementVertical > 0) { _smoothnessMovementVertical = 0; }
+                }
+            }
+            Movement.y += _smoothnessMovementVertical;
+
+
+
+
            
 
 
             //Old system Movement
-         /* if (Input.GetKey(KeyCode.D) && transform.position.x < _lateralLimit) { Movement.x += _sidewaysSpeed; }
-            if (Input.GetKey(KeyCode.A) && transform.position.x > -_lateralLimit) { Movement.x -= _sidewaysSpeed; }
-            if (Input.GetKey(KeyCode.S) && transform.position.y < _lateralLimit) { Movement.y += _sidewaysSpeed; }
-            if (Input.GetKey(KeyCode.W) && transform.position.y > -_lateralLimit) { Movement.y -= _sidewaysSpeed; }*/
+            /* if (Input.GetKey(KeyCode.D) && transform.position.x < _lateralLimit) { Movement.x += _sidewaysSpeed; }
+               if (Input.GetKey(KeyCode.A) && transform.position.x > -_lateralLimit) { Movement.x -= _sidewaysSpeed; }
+               if (Input.GetKey(KeyCode.S) && transform.position.y < _lateralLimit) { Movement.y += _sidewaysSpeed; }
+               if (Input.GetKey(KeyCode.W) && transform.position.y > -_lateralLimit) { Movement.y -= _sidewaysSpeed; }*/
             _rigidbody.transform.Translate(Movement);
         }
 
@@ -129,12 +128,12 @@ namespace Player.Character.Snake
         }
     
 
-
+/*
         private void ShowHealth()
         {
             _showInfoForHealth.ShowInfo(_listPositions.Count);
         }
-    
+    */
     
     
     }

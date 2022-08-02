@@ -69,10 +69,11 @@ namespace Player.Character.Snake
                     if (_smoothnessMovementHorisontal > 0) { _smoothnessMovementHorisontal = 0; }
                 }
             }
+            
             Movement.x += _smoothnessMovementHorisontal;
 
-            
-            
+
+
             //Vertical
             /*
             if (transform.position.y <= -_lateralLimit || transform.position.y >= _lateralLimit)           
@@ -106,7 +107,7 @@ namespace Player.Character.Snake
             Movement.y += _smoothnessMovementVertical;
             */
 
-           
+
 
 
             //Old system Movement
@@ -114,6 +115,8 @@ namespace Player.Character.Snake
                if (Input.GetKey(KeyCode.A) && transform.position.x > -_lateralLimit) { Movement.x -= _sidewaysSpeed; }
                if (Input.GetKey(KeyCode.S) && transform.position.y < _lateralLimit) { Movement.y += _sidewaysSpeed; }
                if (Input.GetKey(KeyCode.W) && transform.position.y > -_lateralLimit) { Movement.y -= _sidewaysSpeed; }*/
+
+            
             _rigidbody.transform.Translate(Movement);
         }
 

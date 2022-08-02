@@ -184,9 +184,9 @@ GameObject:
   - component: {fileID: 8620592401051319121}
   - component: {fileID: 7168191279663941381}
   - component: {fileID: 2185026209316468650}
-  - component: {fileID: 1717810400556172668}
-  - component: {fileID: 437858739070698072}
   - component: {fileID: 1390480468240403407}
+  - component: {fileID: 437858739070698072}
+  - component: {fileID: 1717810400556172668}
   - component: {fileID: 3512095644902012133}
   m_Layer: 0
   m_Name: SnakeHead
@@ -274,35 +274,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1717810400556172668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652899484113241365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08331df2edaee14a80d0f49bab67655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 3512095644902012133}
-  _forwardSpeed: 0.1
-  _sidewaysSpeed: 0.02
-  _lateralLimit: 9
---- !u!114 &437858739070698072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652899484113241365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c30eb37566c5e3408d7501f4a458610, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textMesh: {fileID: 861826311}
 --- !u!114 &1390480468240403407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +291,35 @@ MonoBehaviour:
   Health: 0
   _listPositions: []
   _listTail: []
+--- !u!114 &437858739070698072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652899484113241365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c30eb37566c5e3408d7501f4a458610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textMesh: {fileID: 861826311}
+--- !u!114 &1717810400556172668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652899484113241365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08331df2edaee14a80d0f49bab67655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 3512095644902012133}
+  _forwardSpeed: 0.2
+  _sidewaysSpeed: 0.02
+  _lateralLimit: 11
 --- !u!54 &3512095644902012133
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -335,4 +335,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3

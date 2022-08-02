@@ -14,12 +14,12 @@ namespace Player.Character.Snake
         [HideInInspector] public List<GameObject> _listTail = new List<GameObject>();
         private ShowInfoForHealth _showInfoForHealth;
 
-        private void Start()
+        private void Awake()
         {
-            _showInfoForHealth = GetComponent<ShowInfoForHealth>();            
-            _listPositions.Add(transform.position);            
-             AddHealth((byte)(_startHealth));
-            
+            _parentSnake = gameObject.GetComponentInParent<PlayerBuilder>()._player.transform;
+            _showInfoForHealth = GetComponent<ShowInfoForHealth>();
+            _listPositions.Add(transform.position);
+             AddHealth(_startHealth);
         }
 
 

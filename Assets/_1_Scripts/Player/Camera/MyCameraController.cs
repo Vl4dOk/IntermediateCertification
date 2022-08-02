@@ -14,7 +14,7 @@ namespace Player
 
         private void Start()
         {
-            transform.position = new Vector3(Target.position.x, Target.position.y + 30, Target.position.z + 10);
+            transform.position = new Vector3(Target.position.x, Target.position.y + 38, Target.position.z + 10);
             transform.rotation = Quaternion.Euler(90,0,0);
         }
 
@@ -25,7 +25,7 @@ namespace Player
                 Vector3 target = new Vector3()
                 {
                     //x = _target.position.x,
-                    y = Target.position.y + 30,
+                    y = Target.position.y + 38,
                     z = Target.position.z + 10,
                 };
 

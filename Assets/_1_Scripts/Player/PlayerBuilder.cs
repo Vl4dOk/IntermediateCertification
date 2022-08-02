@@ -6,9 +6,7 @@ namespace Player
 {
     public class PlayerBuilder : MonoBehaviour
     {
-        private GameObject _player;
-
-
+        [HideInInspector] public GameObject _player;
         private GameObject _character;
         private GameObject _camera;
 

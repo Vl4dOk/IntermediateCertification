@@ -6,14 +6,20 @@ using Player.Character.Snake;
 
 public class Barrier : MonoBehaviour
 {
-    public byte _health;
+    public short _health;
+    private short _maxIncrease = 20;
 
     [SerializeField] private float _timeBetweenContacts = 0.3f;
     [SerializeField] private ShowInfoForBarrier _showHealthInfo;
     private float _isContact = 0;
 
 
-    private void Start() => _showHealthInfo = GetComponent<ShowInfoForBarrier>();
+    private void Start() 
+    {
+        _health = (short)(_health + Random.Range(0, _maxIncrease));
+        _showHealthInfo = GetComponent<ShowInfoForBarrier>();
+    
+    }
     
 
 

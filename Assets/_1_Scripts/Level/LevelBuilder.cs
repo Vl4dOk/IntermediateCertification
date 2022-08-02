@@ -6,15 +6,16 @@ namespace Level
 {
     public class LevelBuilder : MonoBehaviour
     {
+        private GameObject[] _levelPrefabs;
         private byte _numberOfPlatforms;
-        private bool _isEndlessLevel;
-
+        private bool _isEndlessLevel;       
         private byte _platformNumber = 0;
 
 
 
-        private void Construct(byte numberOfPlatforms, bool isEndlessLevel)
+        public void Construct(GameObject[] levelPrefabs, byte numberOfPlatforms, bool isEndlessLevel)
         {
+            _levelPrefabs = levelPrefabs;
             _numberOfPlatforms = numberOfPlatforms;
             _isEndlessLevel = isEndlessLevel;
         }
@@ -43,7 +44,7 @@ namespace Level
         }
         private void AddLevelPlatform()
         {
-            GameObject newPlatform = Instantiate(Resources.Load<GameObject>("Prefabs/Level/_BilletPlatform/Billet" + Random.Range(0, 3)), new Vector3(0, 0, 100 * _platformNumber), Quaternion.identity, transform);
+            GameObject newPlatform = Instantiate(_levelPrefabs[Random.Range(0,_levelPrefabs.Length)], new Vector3(0, 0, 100 * _platformNumber), Quaternion.identity, transform);
             _platformNumber++;
         }
         private void AddFinishPlatform()

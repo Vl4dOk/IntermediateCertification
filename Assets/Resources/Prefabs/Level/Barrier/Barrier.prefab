@@ -874,6 +874,7 @@ GameObject:
   - component: {fileID: 3819303727007854494}
   - component: {fileID: 3819303727007854498}
   - component: {fileID: 4902806124793704713}
+  - component: {fileID: 9025002177481207655}
   m_Layer: 0
   m_Name: Barrier
   m_TagString: Untagged
@@ -977,8 +978,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e516f4ff3386349a0ad48329f6f7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 10
-  _timeBetweenContacts: 0.3
+  _health: 1
+  _timeBetweenContacts: 0.2
+  _showHealthInfo: {fileID: 0}
 --- !u!114 &4902806124793704713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,6 +1000,22 @@ MonoBehaviour:
   - {fileID: 252285090}
   - {fileID: 1642350128}
   - {fileID: 586308954}
+--- !u!114 &9025002177481207655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819303727007854489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494adbf3fe6c8864192169f91404c913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color1: {r: 0, g: 0, b: 0, a: 0}
+  _color2: {r: 1, g: 0, b: 0, a: 0}
+  _meshRenderer: {fileID: 0}
+  _smoothness: 0
 --- !u!1 &7464722907562598243
 GameObject:
   m_ObjectHideFlags: 0

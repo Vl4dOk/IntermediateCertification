@@ -6,9 +6,19 @@ namespace Level
 {
     public class LevelBuilder : MonoBehaviour
     {
-        private byte _platformNumber;
-        private byte _maxPlatformNumber = 10;
-        private byte _numberOfPlatforms = 0;
+        private byte _numberOfPlatforms;
+        private bool _isEndlessLevel;
+
+        private byte _platformNumber = 0;
+
+
+
+        private void Construct(byte numberOfPlatforms, bool isEndlessLevel)
+        {
+            _numberOfPlatforms = numberOfPlatforms;
+            _isEndlessLevel = isEndlessLevel;
+        }
+
 
         private void Start()
         {
@@ -22,7 +32,7 @@ namespace Level
         public void AddPlatform()
         {
             if (_platformNumber == 0) { AddStartPlatform(); }
-            else if (_platformNumber <= _maxPlatformNumber) { AddLevelPlatform(); }
+            else if (_platformNumber <= _numberOfPlatforms || _isEndlessLevel) { AddLevelPlatform(); }
             else { AddFinishPlatform(); }
         }
 
@@ -38,7 +48,7 @@ namespace Level
         }
         private void AddFinishPlatform()
         {
-
+            GameObject newPlatform = Instantiate(Resources.Load<GameObject>("Prefabs/Level/Platform/FinishPlatform"), new Vector3(0, 0, 100 * _platformNumber), Quaternion.identity, transform);           
         }
 
     }

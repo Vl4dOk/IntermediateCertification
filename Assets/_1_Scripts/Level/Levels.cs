@@ -8,12 +8,17 @@ namespace Level
     {
         private GameObject _level;
         private LevelBuilder _levelBuilder;
+       
+        private byte _numberLevel;
+        private bool _isEndlessLevel = false;
 
 
-
-        public void Construct(GameObject level)
+        public void Construct(GameObject level, byte numberLevel, bool isEndlessLevel)
         {
             _level = level;
+            _numberLevel = numberLevel;
+            _isEndlessLevel = isEndlessLevel;
+
 
             _level.AddComponent<LevelBuilder>();
             _levelBuilder = level.GetComponent<LevelBuilder>();

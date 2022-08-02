@@ -28,7 +28,7 @@ namespace Player.Character.Snake
             Health += numberOfHealth;
             for (int i = 0; i < numberOfHealth; i++)
             {
-                GameObject tail = Instantiate(Resources.Load<GameObject>("Prefabs/Character/Snake/Snake(Tail)/SphereTail"),
+                GameObject tail = Instantiate(Resources.Load<GameObject>("Prefabs/Player/Character/Snake/Snake(Tail)/SphereTail"),
                     new Vector3(_listPositions[_listTail.Count].x,
                                 _listPositions[_listTail.Count].y,
                                 _listPositions[_listTail.Count].z), Quaternion.Euler(0, 0, 0), _parentSnake);

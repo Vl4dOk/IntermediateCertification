@@ -5,8 +5,8 @@ using Player;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Menu_Levels _menu_Levels;
-    private int _numberLevel = 1;
-    private bool _isEndlessLevel = false;
+    private int _numberLevel;
+    private bool _isEndlessLevel;
 
 
 
@@ -17,19 +17,13 @@ public class GameManager : MonoBehaviour
     private GameObject _game, _level, _player;
     private bool _isGameRunning = false;
 
-    private void DataCollection()
-    {
-        _numberLevel = _menu_Levels.CurrentLevel;
-        _isEndlessLevel = _menu_Levels.IsEndlessLevel;
-        //_numberCharacter
-        //
-    }
-
     public void StartGame()
     {
-        if (_isGameRunning == true)
+        if (_isGameRunning)
             return;
-        
+
+        DataCollection();
+
         _game = new GameObject("Game");
         _level = new GameObject("Level"); _level.transform.parent = _game.transform;
         _level.AddComponent<Levels>();
@@ -58,10 +52,16 @@ public class GameManager : MonoBehaviour
     {
         FinishGame();
 
-        _numberLevel++;
+        _menu_Levels.CurrentLevel++;
 
         StartGame();
     }
 
-
+    private void DataCollection()
+    {
+        _numberLevel = _menu_Levels.CurrentLevel;
+        _isEndlessLevel = _menu_Levels.IsEndlessLevel;
+        //_numberCharacter
+        //
+    }
 }

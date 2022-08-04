@@ -40,9 +40,8 @@ namespace Player.Character.Snake
 
             //New System Movement for smoothness
             //Horizontal
-
-            if (transform.position.x <= -_lateralLimit || transform.position.x >= _lateralLimit)          
-            { _smoothnessMovementHorisontal = 0; }      
+            if (transform.position.x <= -_lateralLimit || transform.position.x >= _lateralLimit)
+            { _smoothnessMovementHorisontal = 0; }
 
             if (Input.GetKey(KeyCode.D) && transform.position.x <= _lateralLimit)
             {
@@ -55,13 +54,13 @@ namespace Player.Character.Snake
                 if (_smoothnessMovementHorisontal > 0)
                 { _smoothnessMovementHorisontal -= _sidewaysSpeed; }
                 _smoothnessMovementHorisontal -= _sidewaysSpeed;
-            }           
+            }
             if (_smoothnessMovementHorisontal != 0 && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
             {
                 if (_smoothnessMovementHorisontal > 0)
                 {
                     _smoothnessMovementHorisontal -= _sidewaysSpeed;
-                    if(_smoothnessMovementHorisontal < 0) { _smoothnessMovementHorisontal = 0; }
+                    if (_smoothnessMovementHorisontal < 0) { _smoothnessMovementHorisontal = 0; }
                 }
                 else if (_smoothnessMovementHorisontal < 0)
                 {
@@ -69,55 +68,57 @@ namespace Player.Character.Snake
                     if (_smoothnessMovementHorisontal > 0) { _smoothnessMovementHorisontal = 0; }
                 }
             }
-            
+
             Movement.x += _smoothnessMovementHorisontal;
 
-
-
-            //Vertical
-            /*
-            if (transform.position.y <= -_lateralLimit || transform.position.y >= _lateralLimit)           
-            { _smoothnessMovementVertical = 0; }  
-
-            if (Input.GetKey(KeyCode.S) && transform.position.y <= _lateralLimit)
             {
-                if (_smoothnessMovementVertical < 0)
-                { _smoothnessMovementVertical += _sidewaysSpeed; }
-                _smoothnessMovementVertical += _sidewaysSpeed;
-            }
-            if (Input.GetKey(KeyCode.W) && transform.position.y >= -_lateralLimit)
-            {
-                if (_smoothnessMovementVertical > 0)
-                { _smoothnessMovementVertical -= _sidewaysSpeed; }
-                _smoothnessMovementVertical -= _sidewaysSpeed;
-            }
-            if (_smoothnessMovementVertical != 0 && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-            {
-                if (_smoothnessMovementVertical > 0)
+
+                //Vertical
+                /*
+                if (transform.position.y <= -_lateralLimit || transform.position.y >= _lateralLimit)           
+                { _smoothnessMovementVertical = 0; }  
+
+                if (Input.GetKey(KeyCode.S) && transform.position.y <= _lateralLimit)
                 {
-                    _smoothnessMovementVertical -= _sidewaysSpeed;
-                    if (_smoothnessMovementVertical < 0) { _smoothnessMovementVertical = 0; }
-                }
-                else if (_smoothnessMovementVertical < 0)
-                {
+                    if (_smoothnessMovementVertical < 0)
+                    { _smoothnessMovementVertical += _sidewaysSpeed; }
                     _smoothnessMovementVertical += _sidewaysSpeed;
-                    if (_smoothnessMovementVertical > 0) { _smoothnessMovementVertical = 0; }
                 }
+                if (Input.GetKey(KeyCode.W) && transform.position.y >= -_lateralLimit)
+                {
+                    if (_smoothnessMovementVertical > 0)
+                    { _smoothnessMovementVertical -= _sidewaysSpeed; }
+                    _smoothnessMovementVertical -= _sidewaysSpeed;
+                }
+                if (_smoothnessMovementVertical != 0 && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+                {
+                    if (_smoothnessMovementVertical > 0)
+                    {
+                        _smoothnessMovementVertical -= _sidewaysSpeed;
+                        if (_smoothnessMovementVertical < 0) { _smoothnessMovementVertical = 0; }
+                    }
+                    else if (_smoothnessMovementVertical < 0)
+                    {
+                        _smoothnessMovementVertical += _sidewaysSpeed;
+                        if (_smoothnessMovementVertical > 0) { _smoothnessMovementVertical = 0; }
+                    }
+                }
+                Movement.y += _smoothnessMovementVertical;
+                */
+
+
+
+
+
+                //Old system Movement
+                /* if (Input.GetKey(KeyCode.D) && transform.position.x < _lateralLimit) { Movement.x += _sidewaysSpeed; }
+                   if (Input.GetKey(KeyCode.A) && transform.position.x > -_lateralLimit) { Movement.x -= _sidewaysSpeed; }
+                   if (Input.GetKey(KeyCode.S) && transform.position.y < _lateralLimit) { Movement.y += _sidewaysSpeed; }
+                   if (Input.GetKey(KeyCode.W) && transform.position.y > -_lateralLimit) { Movement.y -= _sidewaysSpeed; }*/
             }
-            Movement.y += _smoothnessMovementVertical;
-            */
-
-
-
-
-            //Old system Movement
-            /* if (Input.GetKey(KeyCode.D) && transform.position.x < _lateralLimit) { Movement.x += _sidewaysSpeed; }
-               if (Input.GetKey(KeyCode.A) && transform.position.x > -_lateralLimit) { Movement.x -= _sidewaysSpeed; }
-               if (Input.GetKey(KeyCode.S) && transform.position.y < _lateralLimit) { Movement.y += _sidewaysSpeed; }
-               if (Input.GetKey(KeyCode.W) && transform.position.y > -_lateralLimit) { Movement.y -= _sidewaysSpeed; }*/
-
             
-            _rigidbody.transform.Translate(Movement);
+           // _rigidbody.transform.Translate(Movement);
+            _rigidbody.velocity = (Movement);
         }
 
         private void MovementTail()

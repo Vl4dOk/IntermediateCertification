@@ -4,20 +4,32 @@ using Player;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private byte _numberLevel = 1;
-    [SerializeField] private bool _isEndlessLevel = false;
-    private bool _isGameRunning = false;
+    [SerializeField] private Menu_Levels _menu_Levels;
+    private int _numberLevel = 1;
+    private bool _isEndlessLevel = false;
+
+
+
+
+
+
 
     private GameObject _game, _level, _player;
+    private bool _isGameRunning = false;
 
-    private void Start()
+    private void DataCollection()
     {
-        StartGame();
+        _numberLevel = _menu_Levels.CurrentLevel;
+        _isEndlessLevel = _menu_Levels.IsEndlessLevel;
+        //_numberCharacter
+        //
     }
-
 
     public void StartGame()
     {
+        if (_isGameRunning == true)
+            return;
+        
         _game = new GameObject("Game");
         _level = new GameObject("Level"); _level.transform.parent = _game.transform;
         _level.AddComponent<Levels>();

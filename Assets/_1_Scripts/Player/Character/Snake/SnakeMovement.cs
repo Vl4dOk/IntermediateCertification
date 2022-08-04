@@ -7,8 +7,8 @@ namespace Player.Character.Snake
     public class SnakeMovement : MonoBehaviour
     {
         [SerializeField] private Rigidbody _rigidbody;
-                          public float _forwardSpeed;
-        [SerializeField] private float _sidewaysSpeed;
+                         public float _forwardSpeed;
+                         public float _sidewaysSpeed;
                          private float _smoothnessMovementHorisontal;
                          private float _smoothnessMovementVertical;
         [SerializeField] private sbyte _lateralLimit;

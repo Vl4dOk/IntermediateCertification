@@ -10,8 +10,8 @@ namespace Player.Character.Snake
         [SerializeField] private byte _startHealth;
         [HideInInspector] public int Health;
 
-        [HideInInspector] public List<Vector3> _listPositions = new List<Vector3>();
-        [HideInInspector] public List<GameObject> _listTail = new List<GameObject>();
+        [HideInInspector] public List<Vector3> _listPositions = new();
+        [HideInInspector] public List<GameObject> _listTail = new ();
         private ShowInfoForHealth _showInfoForHealth;
 
         private void Awake()
@@ -49,7 +49,10 @@ namespace Player.Character.Snake
                 { _listPositions.RemoveAt(_listTail.Count - 1); }
 
                 if (_listTail.Count <= 0)
-                { Destroy(gameObject); }
+                {
+
+                    Destroy(gameObject);
+                }
             }
             ShowHealth();
          

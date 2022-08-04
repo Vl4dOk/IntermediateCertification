@@ -34,7 +34,6 @@ public class Barrier : MonoBehaviour
 
             if (_health <= 0)
             { Destroy(gameObject); }
-
         }
     }
     private void OnCollisionStay(Collision collision)

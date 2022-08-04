@@ -8,21 +8,21 @@ namespace Player
     {
         public Transform Target;
 
-        [SerializeField] private float _movementSpeed = 1;
+        public float _movementSpeed = 1;
 
 
 
         private void Start()
         {
-            transform.position = new Vector3(Target.position.x, Target.position.y + 38, Target.position.z + 10);
-            transform.rotation = Quaternion.Euler(90,0,0);
+            transform.SetPositionAndRotation(new Vector3(Target.position.x, Target.position.y + 38, Target.position.z + 10), 
+                            Quaternion.Euler(new Vector3(90, 0,0)));
         }
 
         private void FixedUpdate()
         {
             if (Target)
             {
-                Vector3 target = new Vector3()
+                Vector3 target = new()
                 {
                     //x = _target.position.x,
                     y = Target.position.y + 38,

@@ -7,13 +7,13 @@ namespace Level
     public class LevelBuilder : MonoBehaviour
     {
         private GameObject[] _levelPrefabs;
-        private byte _numberOfPlatforms;
+        private int _numberOfPlatforms;
         private bool _isEndlessLevel;       
-        private byte _platformNumber = 0;
+        private int _platformNumber = 0;
 
 
 
-        public void Construct(GameObject[] levelPrefabs, byte numberOfPlatforms, bool isEndlessLevel)
+        public void Construct(GameObject[] levelPrefabs, int numberOfPlatforms, bool isEndlessLevel)
         {
             _levelPrefabs = levelPrefabs;
             _numberOfPlatforms = numberOfPlatforms;

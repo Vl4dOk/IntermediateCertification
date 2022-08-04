@@ -11,11 +11,11 @@ namespace Level
         [HideInInspector] public GameObject[] _levelPrefabs;
         private LevelBuilder _levelBuilder;
        
-        private byte _numberLevel;
+        private int _numberLevel;
         private bool _isEndlessLevel = false;
 
 
-        public void Construct(GameObject level, byte numberLevel, bool isEndlessLevel)
+        public void Construct(GameObject level, int numberLevel, bool isEndlessLevel)
         {
             _level = level;
             _numberLevel = numberLevel;
@@ -26,7 +26,7 @@ namespace Level
 
             _level.AddComponent<LevelBuilder>();
             _levelBuilder = level.GetComponent<LevelBuilder>();
-            _levelBuilder.Construct(_levelPrefabs,(byte)(7 + _numberLevel), _isEndlessLevel);
+            _levelBuilder.Construct(_levelPrefabs,(4 + _numberLevel), _isEndlessLevel);
         }
 
         private void LevelSearch()

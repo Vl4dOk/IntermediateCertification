@@ -8,9 +8,7 @@ namespace Event
 
     public class FinishGame : MonoBehaviour
     {
-
-
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent(out SnakeHealth snake))
             {

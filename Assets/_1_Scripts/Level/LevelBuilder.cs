@@ -8,7 +8,7 @@ namespace Level
     {
         private GameObject[] _levelPrefabs;
         [HideInInspector] public int _numberOfPlatforms;
-        [HideInInspector] public bool _isEndlessLevel;       
+        [HideInInspector] private bool _isEndlessLevel;
         private int _platformNumber = 0;
 
 
@@ -33,8 +33,9 @@ namespace Level
         public void AddPlatform()
         {
             if (_platformNumber == 0) { AddStartPlatform(); }
-            else if (_platformNumber <= _numberOfPlatforms || _isEndlessLevel) { AddLevelPlatform(); }
-            else { AddFinishPlatform(); }
+            else if (_platformNumber < _numberOfPlatforms || _isEndlessLevel) { AddLevelPlatform(); }
+            else if (_platformNumber == _numberOfPlatforms){ AddFinishPlatform(); } 
+            
         }
 
         private void AddStartPlatform()
@@ -49,7 +50,8 @@ namespace Level
         }
         private void AddFinishPlatform()
         {
-            GameObject newPlatform = Instantiate(Resources.Load<GameObject>("Prefabs/Level/Platform/FinishPlatform"), new Vector3(0, 0, 100 * _platformNumber), Quaternion.identity, transform);           
+            GameObject newPlatform = Instantiate(Resources.Load<GameObject>("Prefabs/Level/Platform/FinishPlatform"), new Vector3(0, 0, 100 * _platformNumber), Quaternion.identity, transform);
+            _platformNumber++;
         }
 
     }

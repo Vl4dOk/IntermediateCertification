@@ -14,6 +14,7 @@ namespace Player
 
         private void Start()
         {
+            GlobalEventManager.Event_PlayerOnFinish += CameraStop;
             transform.SetPositionAndRotation(new Vector3(Target.position.x, Target.position.y + 38, Target.position.z + 10), 
                             Quaternion.Euler(new Vector3(90, 0,0)));
         }
@@ -33,6 +34,11 @@ namespace Player
 
                 transform.position = pos;
             }
+        }
+
+        private void CameraStop()
+        {
+            _movementSpeed = 0;
         }
     }
 }

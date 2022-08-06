@@ -8,6 +8,10 @@ public class GlobalEventManager : MonoBehaviour
     public static StartGame Event_StartGame = null;
 
 
+    public delegate void PlayerDied();
+    public static PlayerDied Event_PlayerDied = null;
+
+
     public delegate void PlayerOnFinish();
     public static PlayerOnFinish Event_PlayerOnFinish = null;
 

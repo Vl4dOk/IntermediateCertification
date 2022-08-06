@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {   
         FinishGame();
+
+        
+
         StartGame();
     }
 

@@ -51,6 +51,7 @@ namespace Player.Character.Snake
                 if (_listTail.Count <= 0)
                 {
                     Destroy(gameObject);
+                    GlobalEventManager.Event_PlayerDied.Invoke();
                     return;
                 }
             }

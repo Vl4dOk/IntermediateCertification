@@ -7,7 +7,7 @@ using Player.Character.Snake;
 public class Barrier : MonoBehaviour
 {
     public short _health;
-    private short _maxIncrease = 20;
+    private readonly short _maxIncrease = 20;
 
     [SerializeField] private float _timeBetweenContacts = 0.3f;
     [SerializeField] private ShowInfoForBarrier _showHealthInfo;

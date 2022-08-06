@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Menu_Main : MonoBehaviour
 {
-    [SerializeField] private GameObject _menu_Main, _mainCamera;
+    [SerializeField] private GameObject _mainCamera;
     [SerializeField] private Button Button_Start, Button_Levels, Button_Exit;
 
 
@@ -13,6 +13,6 @@ public class Menu_Main : MonoBehaviour
 
 
 
-    public void Callding_Menu_Main(){ _menu_Main.SetActive(true); _mainCamera.SetActive(true); }
-    public void Clouse_Menu_Main(){  _menu_Main.SetActive(false); _mainCamera.SetActive(false); }
+    public void Activate_Menu_Main(){ gameObject.SetActive(true); _mainCamera.SetActive(true); }
+    public void Deactivate_Menu_Main(){ gameObject.SetActive(false); _mainCamera.SetActive(false); }
 }

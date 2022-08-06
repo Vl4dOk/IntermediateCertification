@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Player;
+using Player.Character.Snake;
 
-public class FinishGame : MonoBehaviour
+namespace Event
 {
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out MyCameraController camera))
-        {
-            camera._movementSpeed = 0;
 
+    public class FinishGame : MonoBehaviour
+    {
+
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out SnakeHealth snake))
+            {
+                GlobalEventManager.Event_PlayerOnFinish?.Invoke();
+            }
         }
     }
 }

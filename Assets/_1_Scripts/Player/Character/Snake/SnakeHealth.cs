@@ -50,8 +50,8 @@ namespace Player.Character.Snake
 
                 if (_listTail.Count <= 0)
                 {
-
                     Destroy(gameObject);
+                    return;
                 }
             }
             ShowHealth();

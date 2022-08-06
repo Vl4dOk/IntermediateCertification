@@ -7,8 +7,8 @@ namespace Level
     public class LevelBuilder : MonoBehaviour
     {
         private GameObject[] _levelPrefabs;
-        private int _numberOfPlatforms;
-        private bool _isEndlessLevel;       
+        [HideInInspector] public int _numberOfPlatforms;
+        [HideInInspector] public bool _isEndlessLevel;       
         private int _platformNumber = 0;
 
 

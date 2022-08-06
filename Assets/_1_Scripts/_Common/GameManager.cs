@@ -33,12 +33,14 @@ public class GameManager : MonoBehaviour
         _player.AddComponent<PlayerBuilder>();
         _player.GetComponent<PlayerBuilder>().Construct(_player, new Vector3 (0,1.1f,-25));
         _isGameRunning = true;
+        GlobalEventManager.Event_StartGame.Invoke();
     }
 
     public void FinishGame()
     {
         Destroy(_game);
         _isGameRunning = false;
+        GlobalEventManager.Event_FinishGame.Invoke();
     }
 
     public void RestartGame()

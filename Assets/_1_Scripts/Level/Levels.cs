@@ -26,7 +26,7 @@ namespace Level
 
             _level.AddComponent<LevelBuilder>();
             _levelBuilder = level.GetComponent<LevelBuilder>();
-            _levelBuilder.Construct(_levelPrefabs,(4 + _numberLevel), _isEndlessLevel);
+            _levelBuilder.Construct(_levelPrefabs,4 + _numberLevel, _isEndlessLevel);
         }
 
         private void LevelSearch()

@@ -7,8 +7,7 @@ namespace Player
     public class MyCameraController : MonoBehaviour
     {
         public Transform Target;
-
-        public float _movementSpeed = 1;
+        [SerializeField] private float _movementSpeed = 1;
 
 
 

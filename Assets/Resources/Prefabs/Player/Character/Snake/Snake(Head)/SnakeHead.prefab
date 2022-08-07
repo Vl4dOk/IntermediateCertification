@@ -317,8 +317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 3512095644902012133}
-  _forwardSpeed: 10
-  _sidewaysSpeed: 1
+  _forwardSpeed: 15
+  _sidewaysSpeed: 0.03
   _lateralLimit: 11
 --- !u!54 &3512095644902012133
 Rigidbody:

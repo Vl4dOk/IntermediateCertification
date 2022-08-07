@@ -45,20 +45,14 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {   
-        FinishGame();
-
-        
-
+        FinishGame();       
         StartGame();
     }
-
 
     public void NextLevel()
     {
         FinishGame();
-
         _menu_Levels.CurrentLevel++;
-
         StartGame();
     }
 

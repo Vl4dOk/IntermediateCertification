@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using Player.Character.Snake;
 
 public class Barrier : MonoBehaviour
 {
-    public short _health;
+    public short Health;
     private readonly short _maxIncrease = 20;
 
     [SerializeField] private float _timeBetweenContacts = 0.3f;
@@ -16,23 +14,19 @@ public class Barrier : MonoBehaviour
 
     private void Start() 
     {
-        _health = (short)(_health + Random.Range(0, _maxIncrease));
-        _showHealthInfo = GetComponent<ShowInfoForBarrier>();
-    
+        Health = (short)(Health + Random.Range(1, _maxIncrease));
+        _showHealthInfo = GetComponent<ShowInfoForBarrier>();    
     }
     
-
-
-
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.TryGetComponent(out SnakeHealth snakeHealth))
         {
             snakeHealth.RemoveHealth();
-            _health--;
-            _showHealthInfo.ShowInfo(_health);
+            Health--;
+            _showHealthInfo.ShowInfo(Health);
 
-            if (_health <= 0)
+            if (Health <= 0)
             { Destroy(gameObject); }
         }
     }
@@ -44,15 +38,14 @@ public class Barrier : MonoBehaviour
 
             if(_isContact >= _timeBetweenContacts)
             {
-                _health--;
-                _showHealthInfo.ShowInfo(_health);
+                Health--;
+                _showHealthInfo.ShowInfo(Health);
                 snakeHealth.RemoveHealth();
                 _isContact = 0;
             }
         }
-        if (_health <= 0)
-        { Destroy(gameObject);         
-        }
+        if (Health <= 0)
+        { Destroy(gameObject);}
     }
 
     private void OnCollisionExit(Collision collision) => _isContact = 0;

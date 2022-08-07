@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Event;
 
 public class Menu_Levels : MonoBehaviour
 {
@@ -17,16 +16,10 @@ public class Menu_Levels : MonoBehaviour
     {
         if (_menu_Levels == null) { _menu_Levels = gameObject; }
 
-
         LoadingSave();
         GlobalEventManager.Event_PlayerOnFinish += SaveLevel;
-
-
         Deactivate_Menu_Levels();
     }
-
-
-
 
 
     public void Activate_Menu_Levels() { _menu_Levels.SetActive(true); }
@@ -36,46 +29,34 @@ public class Menu_Levels : MonoBehaviour
 
     public void ChooseLevel(int numberLevel)
     { CurrentLevel = numberLevel;}
+
     public void ChooseMode()
     { IsEndlessLevel = !IsEndlessLevel;}
 
-
-
-
     private void LoadingSave()
     {
-        //PlayerPrefs.SetInt("Levels", 1);
-
         _maxOpenLevel = PlayerPrefs.GetInt("Levels", 1);
         CurrentLevel = _maxOpenLevel;
         for (int i = 0; i < _buttons_Levels.Length; i++)
-        {
-            _buttons_Levels[i].interactable = false;
-        }
+        { _buttons_Levels[i].interactable = false;}
 
-        for (int i = 0; i < CurrentLevel; i++)
-        {
-            _buttons_Levels[i].interactable = true;
-        }
+        for (int i = 0; i < _maxOpenLevel; i++)
+        { _buttons_Levels[i].interactable = true;}
     }
 
     private void SaveLevel()
     {
-        if (CurrentLevel == _maxOpenLevel)
-        { PlayerPrefs.SetInt("Levels", _maxOpenLevel + 1);
+        if (CurrentLevel == _maxOpenLevel && _maxOpenLevel < _buttons_Levels.Length)
+        {
+            _maxOpenLevel = CurrentLevel + 1;
+            PlayerPrefs.SetInt("Levels", _maxOpenLevel);
 
             for (int i = 0; i < _buttons_Levels.Length; i++)
-            {   _buttons_Levels[i].interactable = false;
-            }
-            for (int i = 0; i < CurrentLevel; i++)
-            {   _buttons_Levels[i].interactable = true;
-            }
+            { _buttons_Levels[i].interactable = false;}
+            for (int i = 0; i < _maxOpenLevel; i++)
+            { _buttons_Levels[i].interactable = true;}
         }
-
         if (CurrentLevel == _buttons_Levels.Length)
-        { CurrentLevel = 1; }
-
-
+        { CurrentLevel = 0; }
     }
-
 }

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Event;
 
 public class Menu_Defeat : MonoBehaviour
 {
@@ -15,8 +14,7 @@ public class Menu_Defeat : MonoBehaviour
         Deactivate_Menu_Defeat();
     }
 
-
-    public void Activate_Menu_Defeat(){ _menu_Defeat.SetActive(true);}
-    public void Deactivate_Menu_Defeat(){ _menu_Defeat.SetActive(false);}
+    public void Activate_Menu_Defeat() { _menu_Defeat.SetActive(true); }
+    public void Deactivate_Menu_Defeat() { _menu_Defeat.SetActive(false); }
 
 }

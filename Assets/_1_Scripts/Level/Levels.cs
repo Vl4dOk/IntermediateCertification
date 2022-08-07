@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Level
@@ -8,35 +6,30 @@ namespace Level
     {
 
         private GameObject _level;
-        [HideInInspector] public GameObject[] _levelPrefabs;
+        private GameObject[] _levelPrefabs;
         private LevelBuilder _levelBuilder;
 
-        [HideInInspector] public int _numberLevel;
-        [HideInInspector] public int _numberOfPlatforms = 5;
-        [HideInInspector] public bool _isEndlessLevel = false;
+        [HideInInspector] public int NumberLevel;
+        [HideInInspector] public int NumberOfPlatforms = 5;
+        [HideInInspector] public bool IsEndlessLevel = false;
 
 
         public void Construct(GameObject level, int numberLevel, bool isEndlessLevel)
         {
             _level = level;
-            _numberLevel = numberLevel;
-            _isEndlessLevel = isEndlessLevel;
+            NumberLevel = numberLevel;
+            IsEndlessLevel = isEndlessLevel;
             LevelSearch();
-
 
 
             _level.AddComponent<LevelBuilder>();
             _levelBuilder = level.GetComponent<LevelBuilder>();
-            _levelBuilder.Construct(_levelPrefabs, _numberOfPlatforms + _numberLevel, _isEndlessLevel);
+            _levelBuilder.Construct(_levelPrefabs, NumberOfPlatforms + NumberLevel, IsEndlessLevel);
         }
 
         private void LevelSearch()
         {
-            _levelPrefabs = Resources.LoadAll<GameObject>("Prefabs/Level/_BilletLevels/Level" + _numberLevel);
+            _levelPrefabs = Resources.LoadAll<GameObject>("Prefabs/Level/_BilletLevels/Level" + NumberLevel);
         }
-
-
-
-
     }
 }

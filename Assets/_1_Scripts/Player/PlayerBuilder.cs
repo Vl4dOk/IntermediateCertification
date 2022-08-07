@@ -6,26 +6,26 @@ namespace Player
 {
     public class PlayerBuilder : MonoBehaviour
     {
-        [HideInInspector] public GameObject _player;
+        [HideInInspector] public GameObject Player;
         private GameObject _character;
         private GameObject _camera;
 
 
         public void Construct(GameObject player, Vector3 characterPosition)
         {
-            _player = player;
+            Player = player;
             AddCharacter(characterPosition);
             AddCamera();
         }
 
         private void AddCharacter(Vector3 position)
         {
-            _character = Instantiate((GameObject)Resources.Load("Prefabs/Player/Character/Snake/Snake(Head)/SnakeHead"), position,Quaternion.identity,_player.transform) ;
+            _character = Instantiate((GameObject)Resources.Load("Prefabs/Player/Character/Snake/Snake(Head)/SnakeHead"), position,Quaternion.identity,Player.transform) ;
         }
 
         private void AddCamera()
         {
-            _camera = Instantiate((GameObject)Resources.Load("Prefabs/Player/Camera/Camera"), _player.transform);
+            _camera = Instantiate((GameObject)Resources.Load("Prefabs/Player/Camera/Camera"), Player.transform);
             _camera.GetComponent<MyCameraController>().Target = _character.transform;
         }
     }

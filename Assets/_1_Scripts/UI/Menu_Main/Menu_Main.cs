@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,20 +10,10 @@ public class Menu_Main : MonoBehaviour
     private void Awake()
     {
         if (_menu_Main == null) { _menu_Main = gameObject; _mainCamera = FindObjectOfType<Camera>().gameObject; }
-
-
     }
-
-
 
     public void Activate_Menu_Main(){ _menu_Main.SetActive(true); _mainCamera.SetActive(true); }
     public void Deactivate_Menu_Main(){ _menu_Main.SetActive(false); _mainCamera.SetActive(false); }
-
-
-
-
-
-
 
 
 

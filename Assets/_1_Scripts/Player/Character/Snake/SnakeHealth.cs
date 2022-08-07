@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Event;
 
 namespace Player.Character.Snake
 {
@@ -10,15 +10,15 @@ namespace Player.Character.Snake
         [SerializeField] private byte _startHealth;
         [HideInInspector] public int Health;
 
-        [HideInInspector] public List<Vector3> _listPositions = new();
-        [HideInInspector] public List<GameObject> _listTail = new ();
+        [HideInInspector] public List<Vector3> ListPositions = new();
+        [HideInInspector] public List<GameObject> ListTail = new ();
         private ShowInfoForHealth _showInfoForHealth;
 
         private void Awake()
         {
-            _parentSnake = gameObject.GetComponentInParent<PlayerBuilder>()._player.transform;
+            _parentSnake = gameObject.GetComponentInParent<PlayerBuilder>().Player.transform;
             _showInfoForHealth = GetComponent<ShowInfoForHealth>();
-            _listPositions.Add(transform.position);
+            ListPositions.Add(transform.position);
              AddHealth(_startHealth);
         }
 
@@ -29,11 +29,11 @@ namespace Player.Character.Snake
             for (int i = 0; i < numberOfHealth; i++)
             {
                 GameObject tail = Instantiate(Resources.Load<GameObject>("Prefabs/Player/Character/Snake/Snake(Tail)/SphereTail"),
-                    new Vector3(_listPositions[_listTail.Count].x,
-                                _listPositions[_listTail.Count].y,
-                                _listPositions[_listTail.Count].z), Quaternion.Euler(0, 0, 0), _parentSnake);
-                _listTail.Add(tail);
-                _listPositions.Add(tail.transform.position);
+                    new Vector3(ListPositions[ListTail.Count].x,
+                                ListPositions[ListTail.Count].y,
+                                ListPositions[ListTail.Count].z), Quaternion.Euler(0, 0, 0), _parentSnake);
+                ListTail.Add(tail);
+                ListPositions.Add(tail.transform.position);
             }
             ShowHealth();
         }
@@ -43,12 +43,12 @@ namespace Player.Character.Snake
             Health -= damage;
             for (int i = 0; i < damage; i++)
             {
-                Destroy(_listTail[_listTail.Count - 1]);
-                _listTail.RemoveAt(_listTail.Count - 1);
-                if (_listTail.Count > 0)
-                { _listPositions.RemoveAt(_listTail.Count - 1); }
+                Destroy(ListTail[ListTail.Count - 1]);
+                ListTail.RemoveAt(ListTail.Count - 1);
+                if (ListTail.Count > 0)
+                { ListPositions.RemoveAt(ListTail.Count - 1); }
 
-                if (_listTail.Count <= 0)
+                if (ListTail.Count <= 0)
                 {
                     Destroy(gameObject);
                     GlobalEventManager.Event_PlayerDied.Invoke();

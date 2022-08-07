@@ -1,17 +1,13 @@
 using UnityEngine;
 using Level;
 using Player;
+using Event;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Menu_Levels _menu_Levels;
     private int _numberLevel;
     private bool _isEndlessLevel;
-
-
-
-
-
 
 
     private GameObject _game, _level, _player;
@@ -60,7 +56,5 @@ public class GameManager : MonoBehaviour
     {
         _numberLevel = _menu_Levels.CurrentLevel;
         _isEndlessLevel = _menu_Levels.IsEndlessLevel;
-        //_numberCharacter
-        //
     }
 }

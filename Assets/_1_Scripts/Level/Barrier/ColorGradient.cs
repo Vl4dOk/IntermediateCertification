@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ColorGradient : MonoBehaviour
@@ -12,7 +10,7 @@ public class ColorGradient : MonoBehaviour
 
     private void Start()
     {
-        _smoothness = 5f / GetComponent<Barrier>()._health;
+        _smoothness = 5f / GetComponent<Barrier>().Health;
         _meshRenderer = GetComponent<MeshRenderer>();
         _meshRenderer.material.color = Color.Lerp (_color1, _color2, _smoothness);
     }

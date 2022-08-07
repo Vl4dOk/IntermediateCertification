@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -9,9 +7,7 @@ namespace Level.Food
     {
         [SerializeField] private TextMeshPro _textMesh;
 
-        private void Start() =>_textMesh.text = GetComponent<Food>().NumberOfLivesRestored.ToString();            
-
-        
+        private void Start() =>_textMesh.text = GetComponent<Food>().NumberOfLivesRestored.ToString();      
 
     }
 }

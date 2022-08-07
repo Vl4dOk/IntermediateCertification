@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Event;
 using Level;
 using Player.Character.Snake;
 
@@ -33,19 +32,15 @@ public class ProgressSlider : MonoBehaviour
         _levels = FindObjectOfType<Levels>();
         _snakeMovement = FindObjectOfType<SnakeMovement>();
 
-        if (_levels._isEndlessLevel)
+        if (_levels.IsEndlessLevel)
         {
-            Destroy(_progressSlider.gameObject);
-            return;
+            Destroy(_progressSlider.gameObject); return;
         }
 
-        _currentLevel.text = _levels._numberLevel.ToString();
-        _nextLevel.text = (_levels._numberLevel+1).ToString();
-
+        _currentLevel.text = _levels.NumberLevel.ToString();
+        _nextLevel.text = (_levels.NumberLevel+1).ToString();
 
         _progressSlider.minValue = 0;
-        _progressSlider.maxValue = (_levels._numberOfPlatforms + _levels._numberLevel) * 100;
-        
-
+        _progressSlider.maxValue = (_levels.NumberOfPlatforms + _levels.NumberLevel) * 100;
     }
 }

@@ -289,8 +289,8 @@ MonoBehaviour:
   _parentSnake: {fileID: 0}
   _startHealth: 1
   Health: 0
-  _listPositions: []
-  _listTail: []
+  ListPositions: []
+  ListTail: []
 --- !u!114 &437858739070698072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,8 +317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 3512095644902012133}
-  _forwardSpeed: 10
-  _sidewaysSpeed: 1
+  ForwardSpeed: 10
+  SidewaysSpeed: 1
   _lateralLimit: 11
 --- !u!54 &3512095644902012133
 Rigidbody:

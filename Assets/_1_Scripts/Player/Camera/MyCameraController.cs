@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Event;
 
 namespace Player
 {
@@ -10,12 +9,11 @@ namespace Player
         [SerializeField] private float _movementSpeed = 1;
 
 
-
         private void Start()
         {
             GlobalEventManager.Event_PlayerOnFinish += CameraStop;
             transform.SetPositionAndRotation(new Vector3(Target.position.x, Target.position.y + 38, Target.position.z + 10), 
-                            Quaternion.Euler(new Vector3(90, 0,0)));
+            Quaternion.Euler(new Vector3(90, 0,0)));
         }
 
         private void FixedUpdate()

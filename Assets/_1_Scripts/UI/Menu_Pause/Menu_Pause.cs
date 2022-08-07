@@ -1,8 +1,8 @@
 using UnityEngine;
+using Event;
 
 public class Menu_Pause : MonoBehaviour
 {
-
     [SerializeField] private GameObject _menu_Pause_Parrent;
     private bool _isEnabledSkript = true, _isEnabledMenu = true;
 

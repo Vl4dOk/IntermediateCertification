@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Event;
 
 public class Interface_Player : MonoBehaviour
 {
@@ -15,7 +14,6 @@ public class Interface_Player : MonoBehaviour
 
         Deactivate_Interface_Payer();
     }
-
 
     public void Activate_Interface_Payer() { _interface_Player.SetActive(true); }
     public void Deactivate_Interface_Payer() { _interface_Player.SetActive(false); }

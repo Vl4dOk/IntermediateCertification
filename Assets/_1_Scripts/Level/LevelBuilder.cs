@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Level 
@@ -7,8 +5,8 @@ namespace Level
     public class LevelBuilder : MonoBehaviour
     {
         private GameObject[] _levelPrefabs;
-        [HideInInspector] public int _numberOfPlatforms;
-        [HideInInspector] private bool _isEndlessLevel;
+        private int _numberOfPlatforms;
+        private bool _isEndlessLevel;
         private int _platformNumber = 0;
 
 
@@ -34,8 +32,7 @@ namespace Level
         {
             if (_platformNumber == 0) { AddStartPlatform(); }
             else if (_platformNumber < _numberOfPlatforms || _isEndlessLevel) { AddLevelPlatform(); }
-            else if (_platformNumber == _numberOfPlatforms){ AddFinishPlatform(); } 
-            
+            else if (_platformNumber == _numberOfPlatforms){ AddFinishPlatform(); }            
         }
 
         private void AddStartPlatform()
@@ -53,6 +50,5 @@ namespace Level
             GameObject newPlatform = Instantiate(Resources.Load<GameObject>("Prefabs/Level/Platform/FinishPlatform"), new Vector3(0, 0, 100 * _platformNumber), Quaternion.identity, transform);
             _platformNumber++;
         }
-
     }
 }

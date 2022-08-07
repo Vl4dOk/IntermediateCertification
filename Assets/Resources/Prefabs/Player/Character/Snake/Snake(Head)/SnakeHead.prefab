@@ -320,6 +320,7 @@ MonoBehaviour:
   _forwardSpeed: 10
   _sidewaysSpeed: 1
   _lateralLimit: 11
+  _sensitivity: 1
 --- !u!54 &3512095644902012133
 Rigidbody:
   m_ObjectHideFlags: 0

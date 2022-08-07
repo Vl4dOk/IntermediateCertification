@@ -7,6 +7,7 @@ namespace Player.Character.Snake
     public class SnakeMovement : MonoBehaviour
     {
         [SerializeField] private Rigidbody _rigidbody;
+                         private Camera _cameraCharacter;
                          public float _forwardSpeed;
                          public float _sidewaysSpeed;
                          private float _smoothnessMovementHorisontal;
@@ -19,6 +20,7 @@ namespace Player.Character.Snake
 
         private void Start()
         {
+            _cameraCharacter = FindObjectOfType<Camera>();
             _listPositions = GetComponent<SnakeHealth>()._listPositions;
             _listTail = GetComponent<SnakeHealth>()._listTail;
         }
@@ -28,7 +30,14 @@ namespace Player.Character.Snake
         {
             MovementHead();
             MovementTail();
+
         }
+
+
+        private Vector3 _previousMousePosition;
+
+
+
 
 
         private void MovementHead()
@@ -36,6 +45,26 @@ namespace Player.Character.Snake
             _listPositions[0] = transform.position;
             //Head moves
             Vector3 Movement = new Vector3(); Movement.z += _forwardSpeed;
+
+
+
+
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 delta = Input.mousePosition - _previousMousePosition;
+               
+                if (delta.x > 0 && transform.position.x <= _lateralLimit)
+                { Movement.x += 20f; }
+                else if (delta.x < 0 && transform.position.x >= -_lateralLimit)
+                { Movement.x -= 20f; }              
+            }
+            _previousMousePosition = Input.mousePosition;
+
+
+
+
+
+
 
 
             //New System Movement for smoothness
@@ -118,7 +147,7 @@ namespace Player.Character.Snake
             }
             
            // _rigidbody.transform.Translate(Movement);
-            _rigidbody.velocity = (Movement);
+            _rigidbody.velocity = Movement;
         }
 
         private void MovementTail()
